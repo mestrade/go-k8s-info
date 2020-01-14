@@ -13,7 +13,7 @@ func main() {
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprintf(w, "Hello, jacques!")
+	fmt.Fprintf(w, "Hello world!")
 
 	vars := os.Environ()
 
