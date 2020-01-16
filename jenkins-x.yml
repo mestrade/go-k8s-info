@@ -39,3 +39,10 @@ pipelineConfig:
       pipeline:
         agent:
           image: gcr.io/kaniko-project
+          stages:
+            - name: build-and-push
+            steps:
+              - name: make
+              image: gcr.io/jenkinsxio/builder-go	
+              command: make	
+              dir: /workspace/source/
