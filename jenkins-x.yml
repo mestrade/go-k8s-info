@@ -35,7 +35,7 @@ pipelineConfig:
           
           - name: whitesource
             image: docker.io/cloudbees/whitesource-agent:latest
-            command: whitesource.sh
+            command: /app/entrypoint.sh
             args:
               - regular
             dir: /workspace/source/
