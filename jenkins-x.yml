@@ -31,6 +31,13 @@ pipelineConfig:
           image: gcr.io/kaniko-project
         stages:
         - name: pr-build-and-push
+          environment:
+          - name: WHITESOURCE_API_KEY
+            value: fake_api_key
+          - name: WHITESOURCE_USER_KEY
+            value: fake_user_key
+          - name: WHITESOURCE_PROJECT_TOKEN
+            value: fake_project_token  
           steps:
           
           - name: whitesource
