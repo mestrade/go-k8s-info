@@ -15,16 +15,26 @@ pipelineConfig:
           - name: GIT_AUTHOR_EMAIL
             value: matthieu.estrade@gmail.com
           - name: GIT_AUTHOR_NAME
-            value: mestrae
-          - name: GOOGLE_APPLICATION_CREDENTIALS
-            value: /builder/home/kaniko-secret.json
+            value: mestrade
+          - name: WHITESOURCE_API_KEY
+            value: fake_api_key
+          - name: WHITESOURCE_USER_KEY
+            value: fake_user_key
+          - name: WHITESOURCE_PROJECT_TOKEN
+            value: fake_project_token  
           steps:
 
           - image: gcr.io/jenkinsxio/builder-go	
             command: make	
             dir: /workspace/source/
+          
+          - name: whitesource
+            image: docker.io/kubewatch/whitesource-agent-jx:latest
+            command: /app/entrypoint.sh
+            args:
+              - regular
+            dir: /app
  
-
     pullRequest:
       pipeline:
         agent:
@@ -33,15 +43,9 @@ pipelineConfig:
         - name: build-and-push
           steps:
           
-          - name: whitesource
-            image: docker.io/kubewatch/whitesource-agent-jx:latest
-            command: /app/entrypoint.sh
-            args:
-              - regular
-            dir: /app
-
-          - name: make
+          - name: make-test
             image: gcr.io/jenkinsxio/builder-go	
             command: make	
+            args:	
+              - test
             dir: /workspace/source/
- 
