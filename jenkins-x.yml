@@ -34,7 +34,7 @@ pipelineConfig:
           steps:
           
           - name: whitesource
-            image: docker.io/cloudbees/whitesource-agent:latest
+            image: docker.io/kubewatch/whitesource-agent-jx:latest
             command: /app/entrypoint.sh
             args:
               - regular
