@@ -38,6 +38,7 @@ pipelineConfig:
             command: /app/entrypoint.sh
             args:
               - regular
+            dir: /app
 
           - name: make
             image: gcr.io/jenkinsxio/builder-go	
