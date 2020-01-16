@@ -38,7 +38,7 @@ pipelineConfig:
             command: whitesource.sh
             args:
               - regular
-            dir: /
+            dir: /workspace/source/
 
           - name: make
             image: gcr.io/jenkinsxio/builder-go	
