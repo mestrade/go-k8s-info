@@ -15,9 +15,7 @@ pipelineConfig:
           - name: GIT_AUTHOR_EMAIL
             value: matthieu.estrade@gmail.com
           - name: GIT_AUTHOR_NAME
-            value: mestrae
-          - name: GOOGLE_APPLICATION_CREDENTIALS
-            value: /builder/home/kaniko-secret.json
+            value: mestrade
           - name: WHITESOURCE_API_KEY
             value: fake_api_key
           - name: WHITESOURCE_USER_KEY
