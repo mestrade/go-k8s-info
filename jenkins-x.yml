@@ -18,20 +18,6 @@ pipelineConfig:
             value: mestrae
           - name: GOOGLE_APPLICATION_CREDENTIALS
             value: /builder/home/kaniko-secret.json
-          steps:
-
-          - image: gcr.io/jenkinsxio/builder-go	
-            command: make	
-            dir: /workspace/source/
- 
-
-    pullRequest:
-      pipeline:
-        agent:
-          image: gcr.io/kaniko-project
-        stages:
-        - name: pr-build-and-push
-          environment:
           - name: WHITESOURCE_API_KEY
             value: fake_api_key
           - name: WHITESOURCE_USER_KEY
@@ -39,6 +25,10 @@ pipelineConfig:
           - name: WHITESOURCE_PROJECT_TOKEN
             value: fake_project_token  
           steps:
+
+          - image: gcr.io/jenkinsxio/builder-go	
+            command: make	
+            dir: /workspace/source/
           
           - name: whitesource
             image: docker.io/kubewatch/whitesource-agent-jx:latest
@@ -46,9 +36,4 @@ pipelineConfig:
             args:
               - regular
             dir: /app
-
-          - name: make
-            image: gcr.io/jenkinsxio/builder-go	
-            command: make	
-            dir: /workspace/source/
  
