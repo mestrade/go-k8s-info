@@ -33,6 +33,11 @@ pipelineConfig:
         - name: build-and-push
           steps:
           
+          - name: whitesource
+            image: docker.io/cloudbees/whitesource-agent:latest
+            command: regular	
+            dir: /workspace/source/
+
           - name: make
             image: gcr.io/jenkinsxio/builder-go	
             command: make	
