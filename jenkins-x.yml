@@ -35,8 +35,10 @@ pipelineConfig:
           
           - name: whitesource
             image: docker.io/cloudbees/whitesource-agent:latest
-            command: /app/entrypoint.sh
-            dir: /workspace/source/
+            command: whitesource.sh
+            args:
+              - regular
+            dir: /
 
           - name: make
             image: gcr.io/jenkinsxio/builder-go	
