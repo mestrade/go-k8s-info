@@ -1,1 +1,44 @@
-buildPack: go
+buildPack: none
+pipelineConfig:
+  pipelines:
+    release:
+      pipeline:
+        agent:
+          image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
+        stages:
+        - name: release
+          environment:
+          - name: GIT_COMMITTER_EMAIL
+            value: matthieu.estrade@gmail.com
+          - name: GIT_COMMITTER_NAME
+            value: mestrade
+          - name: GIT_AUTHOR_EMAIL
+            value: matthieu.estrade@gmail.com
+          - name: GIT_AUTHOR_NAME
+            value: mestrae
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /builder/home/kaniko-secret.json
+          steps:
+
+          - image: gcr.io/jenkinsxio/builder-go	
+            command: make	
+            args:	
+              - linux
+            dir: /workspace/source/
+ 
+
+    pullRequest:
+      pipeline:
+        agent:
+          image: gcr.io/kaniko-project
+        stages:
+        - name: build-and-push
+          steps:
+          
+          - name: make-test
+            image: gcr.io/jenkinsxio/builder-go	
+            command: make	
+            args:	
+              - test
+            dir: /workspace/source/
+ 
