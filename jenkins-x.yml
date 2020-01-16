@@ -35,7 +35,6 @@ pipelineConfig:
           
           - name: whitesource
             image: docker.io/cloudbees/whitesource-agent:latest
-            command: regular	
             dir: /workspace/source/
 
           - name: make
