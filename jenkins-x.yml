@@ -30,10 +30,10 @@ pipelineConfig:
           
           - name: whitesource
             image: docker.io/kubewatch/whitesource-agent-jx:latest
-            command: /app/entrypoint.sh
+            command: /app/entrypoint-jx.sh
             args:
               - regular
-            dir: /app
+            dir: /app/
  
     pullRequest:
       pipeline:
